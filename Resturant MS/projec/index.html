@@ -23,8 +23,8 @@
         <h2>Order Line</h2>
         <div class="order-tabs">
             <button class="active" id="dine-in-button">Dine In</button>
-            <!-- <button id="take-away-button">Take Away</button> -->
-            <!-- <button>Delivery</button> -->
+            <button id="take-away-button">Take Away</button>
+            <button>Delivery</button>
             <button id="view-report">View Daily Report</button>
         </div>
         <div class="order-status" id="order-status"></div>
@@ -40,7 +40,7 @@
     <aside class="order-details">
         <h2>Order Details</h2>
         <div>
-            <label for="customer-name">Assign Staff:</label>
+            <label for="customer-name">Staff Name:</label>
             <input type="text" id="customer-name" placeholder="Enter your name">
         </div>
         <h3>Your Order</h3>
@@ -58,9 +58,9 @@
         <div class="modal-content">
             <span class="close">&times;</span>
             <h2>CASH RECEIPT</h2>
-            <h3>SHOP NAME</h3>
-            <p>Address: Your Shop Address</p>
-            <p>Tel: Your Phone Number</p>
+            <h3>FAST FOOD & RESTURANT</h3>
+            <p>Address: VIA-ROMA</p>
+            <p>Tel: +123 456 789</p>
             <hr>
             <div id="modal-order-summary"></div>
             <hr>
@@ -90,7 +90,8 @@
                     <!-- Daily report data will populate here -->
                 </tbody>
             </table>
-            
+            <button id="download-csv">Download as CSV</button>
+            <button id="download-pdf">Download as PDF</button>
 
             <!-- Summary Section -->
             <div id="summary-container">
