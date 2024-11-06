@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resto - Order Management</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -23,8 +24,8 @@
         <h2>Order Line</h2>
         <div class="order-tabs">
             <button class="active" id="dine-in-button">Dine In</button>
-            <!-- <button id="take-away-button">Take Away</button> -->
-            <!-- <button>Delivery</button> -->
+            <button id="take-away-button">Take Away</button>
+            <button>Delivery</button>
             <button id="view-report">View Daily Report</button>
         </div>
         <div class="order-status" id="order-status"></div>
@@ -39,14 +40,20 @@
 
     <aside class="order-details">
         <h2>Order Details</h2>
-        <div>
-            <label for="customer-name">Staff Name:</label>
-            <input type="text" id="customer-name" placeholder="Enter your name">
+        <div class="form-group">
+            <label for="customer-name" class="font-weight-bold">Name:</label>
+            <select id="customer-name" class="form-control">
+                <option value="">Select a customer</option>
+                <option value="John Doe">John Doe</option>
+                <option value="Jane Smith">Jane Smith</option>
+                <option value="Alice Johnson">Alice Johnson</option>
+                <option value="Bob Brown">Bob Brown</option>
+            </select>
         </div>
         <h3>Your Order</h3>
         <div id="order-summary" class="order-summary"></div>
         <p id="total-payment">Total Payment: $0.00</p>
-        <button id="place-order" disabled>Place Order</button>
+        <button id="place-order" class="btn btn-success" disabled>Place Order</button>
     </aside>
 
     <footer>
@@ -58,14 +65,14 @@
         <div class="modal-content">
             <span class="close">&times;</span>
             <h2>CASH RECEIPT</h2>
-            <h3>FAST FOOD & RESTURANT</h3>
-            <p>Address: VIA-ROMA</p>
-            <p>Tel: +123 456 789</p>
+            <h3>SHOP NAME</h3>
+            <p>Address: Your Shop Address</p>
+            <p>Tel: Your Phone Number</p>
             <hr>
             <div id="modal-order-summary"></div>
             <hr>
             <p id="modal-total-payment"></p>
-            <button id="confirm-order">Confirm Order</button>
+            <button id="confirm-order" class="btn btn-primary">Confirm Order</button>
         </div>
     </div>
 
@@ -74,9 +81,7 @@
         <div class="modal-content">
             <span class="close-report">&times;</span>
             <h2>Daily Report</h2>
-            <button id="download-csv">Download as CSV</button>
-            <button id="download-pdf">Download as PDF</button>
-            <table id="report-table">
+            <table id="report-table" class="table">
                 <thead>
                     <tr>
                         <th>Order #</th>
@@ -90,8 +95,8 @@
                     <!-- Daily report data will populate here -->
                 </tbody>
             </table>
-            <button id="download-csv">Download as CSV</button>
-            <button id="download-pdf">Download as PDF</button>
+            <button id="download-csv" class="btn btn-info">Download as CSV</button>
+            <button id="download-pdf" class="btn btn-info">Download as PDF</button>
 
             <!-- Summary Section -->
             <div id="summary-container">
