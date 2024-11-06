@@ -23,8 +23,9 @@
         <h2>Order Line</h2>
         <div class="order-tabs">
             <button class="active" id="dine-in-button">Dine In</button>
-            <button id="take-away-button">Take Away</button>
-            <button>Delivery</button>
+            <!-- <button id="take-away-button">Take Away</button> -->
+            <!-- <button>Delivery</button> -->
+            <button id="view-report">View Daily Report</button>
         </div>
         <div class="order-status" id="order-status"></div>
     </section>
@@ -38,10 +39,10 @@
 
     <aside class="order-details">
         <h2>Order Details</h2>
-        <!-- <div>
-            <label for="customer-name">Customer Name:</label>
+        <div>
+            <label for="customer-name">Assign Staff:</label>
             <input type="text" id="customer-name" placeholder="Enter your name">
-        </div> -->
+        </div>
         <h3>Your Order</h3>
         <div id="order-summary" class="order-summary"></div>
         <p id="total-payment">Total Payment: $0.00</p>
@@ -68,6 +69,39 @@
         </div>
     </div>
 
+    <!-- Modal for Daily Report -->
+    <div id="report-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-report">&times;</span>
+            <h2>Daily Report</h2>
+            <button id="download-csv">Download as CSV</button>
+            <button id="download-pdf">Download as PDF</button>
+            <table id="report-table">
+                <thead>
+                    <tr>
+                        <th>Order #</th>
+                        <th>Customer Name</th>
+                        <th>Items</th>
+                        <th>Total Price</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody id="report-body">
+                    <!-- Daily report data will populate here -->
+                </tbody>
+            </table>
+            
+
+            <!-- Summary Section -->
+            <div id="summary-container">
+                <!-- Summary data will populate here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript libraries for PDF generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.13/jspdf.plugin.autotable.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
