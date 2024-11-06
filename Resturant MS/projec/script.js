@@ -63,7 +63,7 @@ function renderOrder() {
             <span>${item.name}</span>
             <span>x${item.quantity}</span>
             <span>$${(item.price * item.quantity).toFixed(2)}</span>
-            <button onclick="removeFromOrder(${item.id})">Remove</button>
+            <button class="remove" onclick="removeFromOrder(${item.id})">Remove</button>
         `;
         orderSummary.appendChild(orderItem);
     });
@@ -231,6 +231,14 @@ function downloadCSV() {
         csvContent += `${index + 1},${order.customerName},"${itemsDescription}",$${order.total.toFixed(2)},${order.date}\n`;
     });
 
+    // Generate summary
+    const summary = calculateSummary(confirmedOrders);
+    csvContent += "\nItem Summary\n";
+    csvContent += "Item,Quantity\n";
+    for (const [itemName, quantity] of Object.entries(summary)) {
+        csvContent += `${itemName},${quantity}\n`;
+    }
+
     // Create a download link
     const blob = new Blob([csvContent], { type: 'text/csv' });
     const url = URL.createObjectURL(blob);
@@ -265,6 +273,16 @@ function downloadPDF() {
             order.date,
         ]),
         startY: 20,
+    });
+
+    // Generate summary
+    const summary = calculateSummary(confirmedOrders);
+    doc.text("Item Summary", 10, doc.autoTable.previous.finalY + 10);
+    const summaryData = Object.entries(summary).map(([itemName, quantity]) => [itemName, quantity]);
+    doc.autoTable({
+        head: [['Item', 'Quantity']],
+        body: summaryData,
+        startY: doc.autoTable.previous.finalY + 15,
     });
 
     // Download PDF
