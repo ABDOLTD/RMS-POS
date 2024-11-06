@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resto - Order Management</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Resto</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Menu</a></li>
+                <li><a href="#">Orders</a></li>
+                <li><a href="#">Search</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="order-line">
+        <h2>Order Line</h2>
+        <div class="order-tabs">
+            <button class="active" id="dine-in-button">Dine In</button>
+            <button id="take-away-button">Take Away</button>
+            <button>Delivery</button>
+        </div>
+        <div class="order-status" id="order-status"></div>
+    </section>
+
+    <section class="menu" id="menu-section">
+        <h2>Explore Menu</h2>
+        <div class="menu-items" id="menu-items">
+            <!-- Menu items will be dynamically added here -->
+        </div>
+    </section>
+
+    <aside class="order-details">
+        <h2>Order Details</h2>
+        <!-- <div>
+            <label for="customer-name">Customer Name:</label>
+            <input type="text" id="customer-name" placeholder="Enter your name">
+        </div> -->
+        <h3>Your Order</h3>
+        <div id="order-summary" class="order-summary"></div>
+        <p id="total-payment">Total Payment: $0.00</p>
+        <button id="place-order" disabled>Place Order</button>
+    </aside>
+
+    <footer>
+        <p>© 2024 Resto. All rights reserved.</p>
+    </footer>
+
+    <!-- Modal for Order Confirmation -->
+    <div id="order-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>CASH RECEIPT</h2>
+            <h3>SHOP NAME</h3>
+            <p>Address: Your Shop Address</p>
+            <p>Tel: Your Phone Number</p>
+            <hr>
+            <div id="modal-order-summary"></div>
+            <hr>
+            <p id="modal-total-payment"></p>
+            <button id="confirm-order">Confirm Order</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
