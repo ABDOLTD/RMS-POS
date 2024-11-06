@@ -86,55 +86,82 @@ nav a {
     border-radius: 5px;
 }
 
-/* Add to Order Button Styles */
+/* General Button Styles */
+button {
+    padding: 10px 15px; /* General padding for buttons */
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Rounded corners */
+    font-weight: bold; /* Bold text */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transitions */
+}
+
+/* Add to Order Button */
 .menu-item button {
-    background-color: #ff6347;
-    color: #ffffff;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 8px;
-    font-weight: bold;
-    font-size: 1em;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    background-color: #28a745; /* Green color for Add to Order */
+    color: #ffffff; /* White text */
 }
 
 .menu-item button:hover {
-    background-color: #e5533d;
-    transform: translateY(-3px);
+    background-color: #218838; /* Darker green on hover */
+    transform: translateY(-2px); /* Slight lift effect */
 }
 
 .menu-item button:active {
-    background-color: #cc4934;
-    transform: translateY(1px);
+    background-color: #1e7e34; /* Even darker green when clicked */
+    transform: translateY(1px); /* Pressed down effect */
 }
 
-/* Place Order Button Styles */
+/* Place Order Button */
 #place-order {
-    background-color: #28a745;
-    color: #ffffff;
-    border: none;
-    padding: 15px 20px;
-    border-radius: 8px;
-    font-weight: bold;
-    font-size: 1.1em;
-    cursor: pointer;
-    width: 100%;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-#place-order:disabled {
-    background-color: #a9a9a9;
-    cursor: not-allowed;
+    background-color: #007bff; /* Bootstrap primary color */
+    color: #ffffff; /* White text */
+    width: 100%; /* Full width */
 }
 
 #place-order:hover:enabled {
-    background-color: #218838;
+    background-color: #0056b3; /* Darker blue on hover */
     transform: translateY(-3px);
 }
 
 #place-order:active:enabled {
+    background-color: #004085; /* Dark blue when clicked */
     transform: translateY(1px);
+}
+
+/* Remove Button */
+button.remove {
+    background-color: #dc3545; /* Bootstrap danger color */
+    color: #ffffff; /* White text */
+}
+
+button.remove:hover {
+    background-color: #c82333; /* Darker red on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+}
+
+button.remove:active {
+    background-color: #bd2130; /* Even darker red when clicked */
+    transform: translateY(1px); /* Pressed down effect */
+}
+
+/* Download Buttons in the Report Modal */
+#download-csv, #download-pdf {
+    background-color: #17a2b8; /* Bootstrap info color */
+    color: #ffffff; /* White text */
+    margin-top: 10px; /* Space above buttons */
+}
+
+#download-csv:hover,
+#download-pdf:hover {
+    background-color: #138496; /* Darker teal on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+}
+
+#download-csv:active,
+#download-pdf:active {
+    background-color: #117a8b; /* Even darker teal when clicked */
+    transform: translateY(1px); /* Pressed down effect */
 }
 
 .order-details {
@@ -216,11 +243,6 @@ footer {
     font-weight: bold;
 }
 
-/* Button Styles for Download */
-button {
-    margin-top: 10px; /* Space between buttons */
-}
-
 /* Media Queries for Responsiveness */
 @media (max-width: 768px) {
     .menu-item {
@@ -236,4 +258,11 @@ button {
     .modal-content {
         width: 95%; /* Make modal wider on small screens */
     }
+}
+
+/* Style for Customer Name Label */
+label[for="customer-name"] {
+    font-weight: bold;
+    margin-bottom: 5px; /* Space below the label */
+    display: inline-block; /* Ensure the label occupies its own line */
 }
