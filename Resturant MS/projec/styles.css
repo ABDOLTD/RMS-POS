@@ -91,7 +91,6 @@ button {
     padding: 10px 15px; /* General padding for buttons */
     border: none; /* Remove default border */
     border-radius: 5px; /* Rounded corners */
-    font-weight: bold; /* Bold text */
     cursor: pointer; /* Pointer cursor on hover */
     transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transitions */
 }
@@ -114,18 +113,18 @@ button {
 
 /* Place Order Button */
 #place-order {
-    background-color: #007bff; /* Bootstrap primary color */
+    background-color: #28a745; /* Changed to green color */
     color: #ffffff; /* White text */
     width: 100%; /* Full width */
 }
 
 #place-order:hover:enabled {
-    background-color: #0056b3; /* Darker blue on hover */
+    background-color: #218838; /* Darker green on hover */
     transform: translateY(-3px);
 }
 
 #place-order:active:enabled {
-    background-color: #004085; /* Dark blue when clicked */
+    background-color: #1e7e34; /* Even darker green when clicked */
     transform: translateY(1px);
 }
 
@@ -240,7 +239,7 @@ footer {
 
 #report-table th {
     background-color: #f4f4f4;
-    font-weight: bold;
+    font-weight: bold; /* Keep it bold for headers */
 }
 
 /* Media Queries for Responsiveness */
@@ -262,7 +261,7 @@ footer {
 
 /* Style for Customer Name Label */
 label[for="customer-name"] {
-    font-weight: bold;
+    font-weight: normal; /* No bold */
     margin-bottom: 5px; /* Space below the label */
     display: inline-block; /* Ensure the label occupies its own line */
 }
