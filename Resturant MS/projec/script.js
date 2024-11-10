@@ -1,12 +1,18 @@
+// Original Code
+
 const menuItems = [
-    { id: 1, name: 'BBQ Chicken', price: 10.00, image: 'image/1.jpg' },
-    { id: 2, name: 'Tuna Boiled Eggs', price: 12.50, image: 'image/burger.jpg' },
-    { id: 3, name: 'Meat Sauce Soup', price: 18.00, image: 'image/2.jpg' },
-    { id: 4, name: 'Chicken Slices', price: 22.00, image: 'image/3.jpg' },
-    { id: 5, name: 'Arabic Kebab', price: 28.00, image: 'image/images.jpg' },
-    { id: 6, name: 'Zumbo Burger', price: 10.50, image: 'image/6.jpg' },
-    { id: 7, name: 'Hot Dog', price: 12.00, image: 'image/5.jpg' },
-    { id: 8, name: 'BBQ Ribs', price: 10.50, image: 'image/4.jpg' },
+    { id: 1, name: 'BBQ Chicken', price: 4.00, image: 'image/1.jpg' },
+    { id: 2, name: 'Burger', price: 2.50, image: 'image/burger.jpg' },
+    { id: 3, name: 'Royal Snack', price: 3.00, image: 'image/2.jpg' },
+    { id: 4, name: 'Chicken Slices', price: 2.00, image: 'image/3.jpg' },
+    { id: 5, name: 'Arabic Kebab', price: 4.00, image: 'image/images.jpg' },
+    { id: 6, name: 'Rice', price: 1.50, image: 'image/6.jpg' },
+    { id: 7, name: 'Hot Meal', price: 6.00, image: 'image/5.jpg' },
+    { id: 8, name: 'Basta Ribs', price: 2.50, image: 'image/4.jpg' },
+    { id: 9, name: 'Mangoes', price: 1, image: 'image/7.jpg' },
+    { id: 10, name: 'Milk ', price: 1, image: 'image/8.jpg' },
+    { id: 11, name: 'chocklate', price: 1, image: 'image/9.jpg' },
+    { id: 12, name: 'water melon', price: 1, image: 'image/10.jpg' },
 ];
 
 let order = [];
@@ -22,6 +28,8 @@ const closeModal = document.getElementsByClassName('close')[0];
 
 const reportModal = document.getElementById('report-modal');
 const closeReportModal = document.getElementsByClassName('close-report')[0];
+const orderDetailsSidebar = document.querySelector('.order-details');
+const contentWrapper = document.querySelector('.content-wrapper'); // Reference for adjusting layout
 
 // Function to update the menu
 function updateMenu() {
@@ -39,8 +47,13 @@ function updateMenu() {
     });
 }
 
-// Add item to order
+// Modified addToOrder function to reset order if sidebar is closed
 function addToOrder(id) {
+    // Check if sidebar is hidden, then reset the order
+    if (!orderDetailsSidebar.classList.contains('show')) {
+        order = []; // Reset the order array
+    }
+
     const existingItem = order.find(i => i.id === id);
     if (existingItem) {
         existingItem.quantity++;
@@ -49,7 +62,19 @@ function addToOrder(id) {
         order.push({ ...item, quantity: 1 });
     }
     renderOrder();
+    
+    // Show the sidebar and adjust layout when an item is added
+    orderDetailsSidebar.classList.add('show');
+    contentWrapper.classList.add('sidebar-visible');
 }
+
+// Updated close-sidebar functionality to clear order and hide sidebar
+document.querySelector('.close-sidebar').addEventListener('click', () => {
+    orderDetailsSidebar.classList.remove('show'); // Hide the sidebar
+    contentWrapper.classList.remove('sidebar-visible'); // Reset layout
+    order = []; // Clear the order array
+    renderOrder(); // Re-render order to clear displayed items
+});
 
 // Render current order
 function renderOrder() {
@@ -84,7 +109,7 @@ function removeFromOrder(id) {
     renderOrder();
 }
 
-// Show modal for order summary
+// Updated code: Show modal for order summary and center it
 function showModal() {
     modalOrderSummary.innerHTML = '';
     let total = 0;
@@ -101,7 +126,7 @@ function showModal() {
     });
 
     modalTotalPayment.textContent = `Total: $${total.toFixed(2)}`;
-    modal.style.display = "block";
+    modal.style.display = "flex"; // Set to flex to center the modal
 }
 
 // Save confirmed order to localStorage
@@ -143,15 +168,25 @@ confirmOrderButton.addEventListener('click', () => {
     modal.style.display = "none";
 });
 
-// Close modals
-closeModal.onclick = function() { modal.style.display = "none"; };
-closeReportModal.onclick = function() { reportModal.style.display = "none"; };
+// Updated code: Close modals
+closeModal.onclick = function() { 
+    modal.style.display = "none"; 
+};
 
 // Close modals if clicking outside them
 window.onclick = function(event) {
-    if (event.target === modal) modal.style.display = "none";
-    if (event.target === reportModal) reportModal.style.display = "none";
+    if (event.target === modal) {
+        modal.style.display = "none";
+    }
+    if (event.target === reportModal) {
+        reportModal.style.display = "none";
+    }
 };
+
+// Updated code: Event listener for the "Daily Report" modal close button
+closeReportModal.addEventListener('click', () => {
+    reportModal.style.display = "none"; // Hide the report modal when close button is clicked
+});
 
 // Generate and display the daily report
 function generateReport() {
@@ -180,7 +215,12 @@ function generateReport() {
     const summary = calculateSummary(confirmedOrders);
     displaySummary(summary);
 
-    reportModal.style.display = "block"; // Show the report modal
+    openReportModal(); // Show the report modal
+}
+
+// Updated code: Function to open the report modal in a centered position
+function openReportModal() {
+    reportModal.style.display = "flex"; // Display as flex to center content
 }
 
 // Function to calculate item quantities from all confirmed orders
