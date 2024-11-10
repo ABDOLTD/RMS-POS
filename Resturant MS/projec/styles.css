@@ -1,15 +1,21 @@
+/* General Reset */
 * {
     box-sizing: border-box;
 }
 
+/* General Body Styles */
 body {
     font-family: Arial, sans-serif;
     background-color: #f9f9f9;
     margin: 0;
-    padding: 20px;
+    padding: 0;
     color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
+/* Header Styling */
 header {
     background-color: #3a3a3a;
     color: #ffffff;
@@ -17,6 +23,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
 }
 
 header h1 {
@@ -38,31 +45,184 @@ nav a {
     text-decoration: none;
 }
 
-.order-line, .menu, .order-details {
-    background-color: #ffffff;
+/* Wrapper for Menu and Sidebar */
+.content-wrapper {
+    display: flex;
+    width: 100%;
+    transition: margin-right 0.3s ease;
+}
+
+/* Main menu styling */
+.menu {
+    width: 100%;
+    transition: width 0.3s ease;
+}
+
+/* Sidebar Styling for Order Details */
+.order-details {
+    width: 300px;
+    height: 100vh;
+    position: fixed;
+    right: -300px; /* Hidden by default */
+    top: 0;
     padding: 20px;
-    margin: 10px 0;
-    border-radius: 8px;
+    overflow-y: auto;
+    background-color: #f0f0f0;
+    box-shadow: -2px 0 4px rgba(0, 0, 0, 0.1);
+    transition: right 0.3s ease;
+}
+
+/* Updated Sidebar Styling */
+.order-details {
+    width: 300px;
+    height: 100vh;
+    position: fixed;
+    right: -300px; /* Hidden by default */
+    top: 0;
+    padding: 20px;
+    overflow-y: auto;
+    background-color: #f9f9f9; /* Lighter background */
+    box-shadow: -2px 0 4px rgba(0, 0, 0, 0.1);
+    transition: right 0.3s ease;
+    font-size: 0.9em; /* Slightly smaller font for a compact look */
+}
+
+/* Sidebar visible */
+.order-details.show {
+    right: 0;
+}
+
+/* Order Details Header */
+.order-details h2 {
+    font-size: 1.2em;
+    margin-bottom: 15px;
+}
+
+/* Order Item Container */
+.order-summary > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.order-tabs {
-    margin-bottom: 10px;
+/* Styling for item details within each order item */
+.order-summary span {
+    font-size: 0.9em;
+    flex: 1;
+    text-align: center;
 }
 
-.order-tabs button {
-    padding: 10px;
-    margin-right: 5px;
+/* Remove button styling */
+button.remove {
+    background-color: #dc3545;
+    color: #fff;
+    padding: 4px 8px;
     border: none;
+    border-radius: 3px;
+    font-size: 0.8em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button.remove:hover {
+    background-color: #c82333;
+}
+
+/* Styling for Total Payment */
+#total-payment {
+    font-weight: bold;
+    font-size: 1.1em;
+    color: #4caf50;
+    text-align: right;
+    margin-top: 15px;
+}
+
+/* Place Order Button */
+#place-order {
+    background-color: #28a745;
+    color: #ffffff;
+    width: 100%;
+    padding: 10px;
+    font-size: 1em;
     border-radius: 5px;
+    margin-top: 10px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#place-order:hover:enabled {
+    background-color: #218838;
+    transform: translateY(-3px);
+}
+
+/* Close Button for Sidebar */
+.close-sidebar {
+    font-size: 1.2em;
+    color: #333;
+    position: absolute;
+    right: 10px;
+    top: 10px;
     cursor: pointer;
 }
 
-.order-tabs .active {
+.close-sidebar:hover {
+    color: #000;
+}
+
+/* Updated Order Line Section */
+.order-line {
+    background-color: #ffffff;
+    padding: 20px;
+    margin: 20px auto;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 700px;
+    text-align: center;
+}
+
+.order-line h2 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+/* Centered Buttons in Order Tabs */
+.order-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.order-tabs button {
+    padding: 10px 20px;
+    font-size: 1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.order-tabs button.active {
     background-color: #4caf50;
     color: white;
 }
 
+.order-tabs #view-report {
+    background-color: #f2f2f2;
+    color: #333;
+}
+
+.order-tabs button:hover {
+    background-color: #e0e0e0;
+}
+
+/* Menu Item Styling */
 .menu-items {
     display: flex;
     flex-wrap: wrap;
@@ -86,181 +246,159 @@ nav a {
     border-radius: 5px;
 }
 
-/* General Button Styles */
+/* Button Styles */
 button {
-    padding: 10px 15px; /* General padding for buttons */
-    border: none; /* Remove default border */
-    border-radius: 5px; /* Rounded corners */
-    cursor: pointer; /* Pointer cursor on hover */
-    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transitions */
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-/* Add to Order Button */
 .menu-item button {
-    background-color: #28a745; /* Green color for Add to Order */
-    color: #ffffff; /* White text */
+    background-color: #28a745;
+    color: #ffffff;
 }
 
 .menu-item button:hover {
-    background-color: #218838; /* Darker green on hover */
-    transform: translateY(-2px); /* Slight lift effect */
+    background-color: #218838;
+    transform: translateY(-2px);
 }
 
-.menu-item button:active {
-    background-color: #1e7e34; /* Even darker green when clicked */
-    transform: translateY(1px); /* Pressed down effect */
-}
-
-/* Place Order Button */
-#place-order {
-    background-color: #28a745; /* Changed to green color */
-    color: #ffffff; /* White text */
-    width: 100%; /* Full width */
-}
-
-#place-order:hover:enabled {
-    background-color: #218838; /* Darker green on hover */
-    transform: translateY(-3px);
-}
-
-#place-order:active:enabled {
-    background-color: #1e7e34; /* Even darker green when clicked */
-    transform: translateY(1px);
-}
-
-/* Remove Button */
 button.remove {
-    background-color: #dc3545; /* Bootstrap danger color */
-    color: #ffffff; /* White text */
+    background-color: #dc3545;
+    color: #ffffff;
 }
 
 button.remove:hover {
-    background-color: #c82333; /* Darker red on hover */
-    transform: translateY(-2px); /* Slight lift effect */
+    background-color: #c82333;
+    transform: translateY(-2px);
 }
 
-button.remove:active {
-    background-color: #bd2130; /* Even darker red when clicked */
-    transform: translateY(1px); /* Pressed down effect */
-}
-
-/* Download Buttons in the Report Modal */
-#download-csv, #download-pdf {
-    background-color: #17a2b8; /* Bootstrap info color */
-    color: #ffffff; /* White text */
-    margin-top: 10px; /* Space above buttons */
-}
-
-#download-csv:hover,
-#download-pdf:hover {
-    background-color: #138496; /* Darker teal on hover */
-    transform: translateY(-2px); /* Slight lift effect */
-}
-
-#download-csv:active,
-#download-pdf:active {
-    background-color: #117a8b; /* Even darker teal when clicked */
-    transform: translateY(1px); /* Pressed down effect */
-}
-
-.order-details {
-    background-color: #f0f0f0;
-    padding: 20px;
-}
-
-.order-summary {
-    border: 1px solid #ccc;
-    padding: 10px;
-    border-radius: 5px;
-    background-color: #fff;
-    margin-bottom: 10px;
-}
-
-.order-summary div {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 5px 0;
-}
-
-footer {
-    text-align: center;
-    margin-top: 20px;
-    color: #777;
-}
-
-/* Modal Styles */
-.modal {
-    display: none; 
-    position: fixed; 
-    z-index: 1; 
-    left: 0;
-    top: 0;
-    width: 100%; 
-    height: 100%; 
-    background-color: rgba(0,0,0,0.4); 
-}
-
-.modal-content {
-    background-color: #fefefe;
-    margin: 10% auto; /* Adjust for better centering */
-    padding: 20px;
-    width: 90%; /* Make it responsive */
-    max-width: 700px; /* Ensure it doesn't get too large */
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    overflow-y: auto; /* Allow scrolling if content overflows */
-}
-
-.close, .close-report {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    cursor: pointer;
-}
-
-.close:hover, .close-report:hover {
-    color: black;
-}
-
-/* Table styling for the daily report */
-#report-table {
-    width: 100%;
-    border-collapse: collapse;
+/* Total Payment Styling */
+#total-payment {
+    font-weight: bold;
+    font-size: 1.2em;
+    color: #4caf50;
     margin-top: 10px;
 }
 
-#report-table th, #report-table td {
-    border: 1px solid #ddd;
-    padding: 8px;
+/* Footer Styling */
+footer {
+    width: 100%;
     text-align: center;
+    padding: 10px 0;
+    background-color: #f1f1f1;
+    color: #555;
+    border-top: 1px solid #ddd;
 }
 
-#report-table th {
-    background-color: #f4f4f4;
-    font-weight: bold; /* Keep it bold for headers */
-}
-
-/* Media Queries for Responsiveness */
+/* Responsive Styles */
 @media (max-width: 768px) {
     .menu-item {
-        width: calc(50% - 20px); /* Two items per row */
+        width: calc(50% - 20px);
+    }
+    .content-wrapper.sidebar-visible .menu {
+        width: 100%;
+    }
+    .order-details {
+        width: 100%;
     }
 }
 
 @media (max-width: 480px) {
     .menu-item {
-        width: 100%; /* One item per row */
+        width: 100%;
     }
-
-    .modal-content {
-        width: 95%; /* Make modal wider on small screens */
+    .order-details {
+        width: 100%;
+        position: relative;
+        height: auto;
     }
 }
 
-/* Style for Customer Name Label */
-label[for="customer-name"] {
-    font-weight: normal; /* No bold */
-    margin-bottom: 5px; /* Space below the label */
-    display: inline-block; /* Ensure the label occupies its own line */
+/* Modal Styling */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    max-width: 90%;
+    width: 700px; /* Set a max width for the modal */
+    max-height: 80%;
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    overflow-y: auto; /* Allows scrolling inside the modal */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.close-report, .close {
+    color: #aaa;
+    float: right;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-report:hover, .close:hover {
+    color: #333;
+}
+
+#order-modal .modal-content {
+    max-width: 90%;
+    width: 600px; /* Set a max width for the Order Confirmation modal */
+    max-height: 80%;
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    overflow-y: auto; /* Allows scrolling inside the modal */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#order-modal .close {
+    color: #aaa;
+    float: right;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#order-modal .close:hover {
+    color: #333;
+}
+
+#report-table {
+    width: 100%;
+    margin-top: 15px;
+    border-collapse: collapse;
+    font-size: 0.9em; /* Slightly smaller font size for compact view */
+}
+
+#report-table th, #report-table td {
+    padding: 8px 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+#report-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+#summary-container {
+    margin-top: 15px;
+}
+
+.btn {
+    margin-top: 10px;
 }
